@@ -71,3 +71,55 @@ resource "aws_lambda_function" "main" {
   runtime          = "go1.x"
   timeout          = 60 * 15
 }
+
+/*
+{
+  "version": "0",
+  "id": "468fe059-f4b7-445f-bb22-2a271b94974d",
+  "detail-type": "EC2 Instance-terminate Lifecycle Action",
+  "source": "aws.autoscaling",
+  "account": "123456789012",
+  "time": "2015-12-22T18:43:48Z",
+  "region": "us-east-1",
+  "resources": ["arn:aws:autoscaling:us-east-1:123456789012:autoScalingGroup:59fcbb81-bd02-485d-80ce-563ef5b237bf:autoScalingGroupName/sampleASG"],
+  "detail": {
+    "LifecycleActionToken": "630aa23f-48eb-45e7-aba6-799ea6093a0f",
+    "AutoScalingGroupName": "sampleASG",
+    "LifecycleHookName": "SampleLifecycleHook-6789",
+    "EC2InstanceId": "i-12345678",
+    "LifecycleTransition": "autoscaling:EC2_INSTANCE_TERMINATING"
+  }
+}
+*/
+
+// subscribe for the entire termination events
+resource "aws_cloudwatch_event_rule" "catch-all" {
+  count = length(var.drain_asg_names) == 0 ? 1 : 0
+
+  name        = "${var.prefix}-ecs-drain-catch-all"
+  description = "Drain ECS Container Instances"
+
+  event_pattern = jsonencode({
+    detail-type = [
+      "EC2 Instance-terminate Lifecycle Action"
+    ],
+    source = ["aws.autoscaling"]
+  })
+}
+
+resource "aws_cloudwatch_event_rule" "specific" {
+  count = length(var.drain_asg_names) > 0 ? 1 : 0
+
+  name        = "${var.prefix}-ecs-drain"
+  description = "Drain ECS Container Instances"
+
+  event_pattern = jsonencode({
+    detail-type = [
+      "EC2 Instance-terminate Lifecycle Action"
+    ],
+    source = ["aws.autoscaling"]
+    detail = {
+      AutoScalingGroupName = var.drain_asg_names
+    }
+  })
+}
