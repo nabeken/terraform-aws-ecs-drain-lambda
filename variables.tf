@@ -2,6 +2,11 @@ variable "prefix" {}
 variable "account_id" {}
 variable "region" {}
 
+variable "event_main_version" {
+  description = "The version of the Lambda function that receivets the events"
+  default     = "$LATEST"
+}
+
 variable "drain_asg_names" {
   type    = list(string)
   default = []

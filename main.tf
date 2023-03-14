@@ -72,6 +72,13 @@ resource "aws_lambda_function" "main" {
   timeout          = 60 * 15
 }
 
+resource "aws_lambda_alias" "main" {
+  name             = "main"
+  description      = "the main version that receives the events"
+  function_name    = aws_lambda_function.main.function_name
+  function_version = var.event_main_version
+}
+
 /*
 {
   "version": "0",
@@ -122,4 +129,18 @@ resource "aws_cloudwatch_event_rule" "specific" {
       AutoScalingGroupName = var.drain_asg_names
     }
   })
+}
+
+resource "aws_cloudwatch_event_target" "lambda" {
+  rule = length(var.drain_asg_names) > 0 ? aws_cloudwatch_event_rule.specific[0].name : aws_cloudwatch_event_rule.catch-all[0].name
+  arn  = aws_lambda_alias.main.arn
+}
+
+resource "aws_lambda_permission" "allow_events" {
+  statement_id  = "AllowExecutionFromEventBridge"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.main.function_name
+  principal     = "events.amazonaws.com"
+  source_arn    = length(var.drain_asg_names) > 0 ? aws_cloudwatch_event_rule.specific[0].arn : aws_cloudwatch_event_rule.catch-all[0].arn
+  qualifier     = aws_lambda_alias.main.name
 }
