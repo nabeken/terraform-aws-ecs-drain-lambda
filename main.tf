@@ -40,8 +40,7 @@ data "aws_iam_policy_document" "main" {
     ]
 
     resources = [
-      "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/lambda/${var.prefix}-ecs-drain",
-      "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/lambda/${var.prefix}-ecs-drain/*",
+      "arn:aws:logs:${var.region}:${var.account_id}:log-group:/aws/lambda/${var.prefix}-ecs-drain:*",
     ]
   }
 }
