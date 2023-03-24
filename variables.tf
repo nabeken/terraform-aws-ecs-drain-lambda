@@ -8,7 +8,7 @@ variable "event_main_version" {
 }
 
 variable "drain_asg_names" {
-  type    = list(string)
+  type    = list(any)
   default = []
 }
 
