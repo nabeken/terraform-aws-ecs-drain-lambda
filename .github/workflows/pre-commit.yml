@@ -1,0 +1,28 @@
+name: Pre-Commit
+
+on:
+  pull_request:
+    branches:
+      - main
+env:
+  TERRAFORM_DOCS_VERSION: 0.16.0
+  HCLEDIT_VERSION: 0.2.6
+
+jobs:
+  pre-commit:
+    name: Pre-commit hooks execute
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run pre-commit
+        uses: clowdhaus/terraform-composite-actions/pre-commit@main
+        with:
+          # Configure default software
+          terraform-version: 1.2.0
+          terraform-docs-version: v${{ env.TERRAFORM_DOCS_VERSION }}
+          # Configure optional software
+          install-hcledit: true
+          hcledit-version: ${{ env.HCLEDIT_VERSION }}
+          args: "--all-files --color always --show-diff-on-failure"
