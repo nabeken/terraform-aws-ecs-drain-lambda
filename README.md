@@ -1,6 +1,6 @@
-# terraform-ecs-drain-lambda
+# terraform-aws-ecs-drain-lambda
 
-`terraform-ecs-drain-lambda` is a Terraform module that provisions [getsocial-rnd/ecs-drain-lambda](https://github.com/getsocial-rnd/ecs-drain-lambda).
+`terraform-aws-ecs-drain-lambda` is a Terraform module that provisions [getsocial-rnd/ecs-drain-lambda](https://github.com/getsocial-rnd/ecs-drain-lambda).
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
