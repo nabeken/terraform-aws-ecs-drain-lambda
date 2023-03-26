@@ -13,6 +13,9 @@ jobs:
     name: Pre-commit hooks execute
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Check terraform-docs
         uses: clowdhaus/terraform-composite-actions/pre-commit@main
         with:
