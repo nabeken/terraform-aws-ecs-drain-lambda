@@ -1,9 +1,11 @@
 variable "region" {
-  type = string
+  description = "AWS Region where the lambda function will be deployed"
+  type        = string
 }
 
 variable "prefix" {
-  type = string
+  description = "A prefix used for resources created by this module"
+  type        = string
 }
 
 variable "drain_asg_names" {
