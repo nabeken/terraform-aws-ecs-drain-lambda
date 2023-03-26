@@ -1,6 +1,6 @@
 variable "prefix" {
   type        = string
-  description = "A prefix used for resources created by this module"
+  description = "A prefix used for the resources created by this module"
 }
 
 variable "account_id" {
