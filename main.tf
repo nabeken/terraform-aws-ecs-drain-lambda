@@ -1,4 +1,7 @@
 # IAM role
+locals {
+  source_zip = "ecs-drain-lambda_${var.source_version}_linux_amd64.zip"
+}
 
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
@@ -65,8 +68,8 @@ resource "aws_lambda_function" "main" {
   function_name    = "${var.prefix}-ecs-drain"
   role             = aws_iam_role.main.arn
   handler          = "ecs-drain-lambda"
-  filename         = var.source_zip
-  source_code_hash = filebase64sha256(var.source_zip)
+  filename         = local.source_zip
+  source_code_hash = filebase64sha256(local.source_zip)
   runtime          = "go1.x"
   timeout          = 60 * 15
 }
