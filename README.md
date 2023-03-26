@@ -45,7 +45,7 @@ No modules.
 | <a name="input_event_main_version"></a> [event\_main\_version](#input\_event\_main\_version) | The version of the Lambda function that receivets the events | `string` | `"$LATEST"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | A prefix used for resources created by this module | `any` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS Region where the lambda function will be deployed | `any` | n/a | yes |
-| <a name="input_source_version"></a> [source\_version](#input\_source\_version) | n/a | `string` | `"1.0.7"` | no |
+| <a name="input_source_version"></a> [source\_version](#input\_source\_version) | A version of the upstream release | `string` | `"1.0.7"` | no |
 
 ## Outputs
 

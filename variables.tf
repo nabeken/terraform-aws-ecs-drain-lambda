@@ -22,5 +22,6 @@ variable "drain_asg_names" {
 }
 
 variable "source_version" {
-  default = "1.0.7"
+  description = "A version of the upstream release"
+  default     = "1.0.7"
 }
