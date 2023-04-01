@@ -44,6 +44,7 @@ No modules.
 | <a name="input_event_main_version"></a> [event\_main\_version](#input\_event\_main\_version) | The version of the Lambda function that receivets the events | `string` | `"$LATEST"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | A prefix used for the resources created by this module | `string` | n/a | yes |
 | <a name="input_source_version"></a> [source\_version](#input\_source\_version) | A version of the upstream release | `string` | `"1.0.7"` | no |
+| <a name="input_source_zip"></a> [source\_zip](#input\_source\_zip) | A path to custom zip file. You still have to place a zip file in the working directly before invoking terraform. If not specified, terraform will try to locate a zip file based on the `source_version` variable. | `string` | `""` | no |
 
 ## Outputs
 

@@ -1,6 +1,6 @@
 # IAM role
 locals {
-  source_zip = "ecs-drain-lambda_${var.source_version}_linux_amd64.zip"
+  source_zip = length(var.source_zip) > 0 ? var.source_zip : "ecs-drain-lambda_${var.source_version}_linux_amd64.zip"
 }
 
 data "aws_iam_policy_document" "assume_role_policy" {
