@@ -8,6 +8,5 @@ module "ecs_drain" {
   source = "../"
 
   prefix          = var.prefix
-  region          = var.region
   drain_asg_names = var.drain_asg_names
 }
