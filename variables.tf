@@ -20,3 +20,9 @@ variable "source_version" {
   description = "A version of the upstream release"
   default     = "1.0.7"
 }
+
+variable "source_zip" {
+  type        = string
+  description = "A path to custom zip file. You still have to place a zip file in the working directly before invoking terraform. If not specified, terraform will try to locate a zip file based on the `source_version` variable."
+  default     = ""
+}
