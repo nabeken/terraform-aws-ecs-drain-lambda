@@ -3,16 +3,6 @@ variable "prefix" {
   description = "A prefix used for the resources created by this module"
 }
 
-variable "account_id" {
-  type        = string
-  description = "AWS Account ID where the lambda function will be deployed"
-}
-
-variable "region" {
-  type        = string
-  description = "AWS Region where the lambda function will be deployed"
-}
-
 variable "event_main_version" {
   type        = string
   description = "The version of the Lambda function that receivets the events"
