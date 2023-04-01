@@ -1,6 +1,14 @@
 # terraform-aws-ecs-drain-lambda
 
+[![Pre-Commit](https://github.com/nabeken/terraform-aws-ecs-drain-lambda/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/nabeken/terraform-aws-ecs-drain-lambda/actions/workflows/pre-commit.yml)
+
 `terraform-aws-ecs-drain-lambda` is a Terraform module that provisions [getsocial-rnd/ecs-drain-lambda](https://github.com/getsocial-rnd/ecs-drain-lambda).
+
+## Prerequisite
+
+You need to place a zip file that contains the `ecs-drain-lambda` binary into a terraform's working directly before invoking terraform.
+
+You can find an example script to download the upstream zip file in `scripts` directly.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
