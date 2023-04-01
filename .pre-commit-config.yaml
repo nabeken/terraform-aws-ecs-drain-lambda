@@ -7,6 +7,7 @@ repos:
       - id: terraform_docs
         args:
           - '--args=--lockfile=false'
+          - '--args=--output-file=""'
       - id: terraform_tflint
         args:
           - '--args=--only=terraform_deprecated_interpolation'
