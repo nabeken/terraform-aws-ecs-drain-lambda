@@ -6,7 +6,7 @@
 
 ## Prerequisite
 
-You need to place a zip file that contains the `ecs-drain-lambda` binary into a terraform's working directly before invoking terraform.
+You need to place a zip file that contains the `ecs-drain-lambda` binary as `bootstrap` into a terraform's working directly before invoking terraform. This is because the module will use `provided.al2` runtime instead.
 
 You can find an example script to download the upstream zip file in `scripts` directly.
 

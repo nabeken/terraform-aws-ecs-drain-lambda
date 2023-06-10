@@ -1,9 +1,26 @@
-#!/bin/sh
+#!/bin/bash
+APP=ecs-drain-lambda
 VERSION=1.0.7
 
-set -e
+set -eo pipefail
 
-curl -sSL --fail -O "https://github.com/getsocial-rnd/ecs-drain-lambda/releases/download/v${VERSION}/ecs-drain-lambda_${VERSION}_checksums.txt"
-curl -sSL --fail -O "https://github.com/getsocial-rnd/ecs-drain-lambda/releases/download/v${VERSION}/ecs-drain-lambda_${VERSION}_linux_amd64.zip"
+T=$(mktemp -d)
+trap "rm -rf ${T}" EXIT
 
-shasum --check ecs-drain-lambda_1.0.7_checksums.txt
+pushd "${T}"
+
+curl -sSL --fail -O "https://github.com/getsocial-rnd/${APP}/releases/download/v${VERSION}/${APP}_${VERSION}_checksums.txt"
+curl -sSL --fail -O "https://github.com/getsocial-rnd/${APP}/releases/download/v${VERSION}/${APP}_${VERSION}_linux_amd64.zip"
+
+shasum --check "${APP}_${VERSION}_checksums.txt"
+
+echo "renaming the binary to 'bootstrap'..."
+
+unzip "${APP}_${VERSION}_linux_amd64.zip"
+cp -a ${APP} bootstrap
+zip "${APP}_${VERSION}_linux_amd64.zip" bootstrap
+zip "${APP}_${VERSION}_linux_amd64.zip" -d ${APP}
+
+popd
+
+mv "${T}/${APP}_${VERSION}_linux_amd64.zip" .
