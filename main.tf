@@ -127,9 +127,14 @@ resource "aws_cloudwatch_event_rule" "specific" {
       "EC2 Instance-terminate Lifecycle Action"
     ],
     source = ["aws.autoscaling"]
-    detail = {
-      AutoScalingGroupName = var.drain_asg_names
-    }
+    detail = merge(
+      {
+        AutoScalingGroupName = var.drain_asg_names
+      },
+      length(var.lifecycle_hook_names) > 0 ? {
+        LifecycleHookName = var.lifecycle_hook_names
+      } : {}
+    )
   })
 }
 

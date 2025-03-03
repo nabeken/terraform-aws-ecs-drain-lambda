@@ -15,6 +15,12 @@ variable "drain_asg_names" {
   default     = []
 }
 
+variable "lifecycle_hook_names" {
+  type        = list(string)
+  description = "List of lifecycle hooks for which to trigger Lambda. If you don't specify this, the lambda function will react to all instance termination lifecycle events."
+  default     = []
+}
+
 variable "source_version" {
   type        = string
   description = "A version of the upstream release"
