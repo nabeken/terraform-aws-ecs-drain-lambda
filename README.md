@@ -49,7 +49,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_drain_asg_names"></a> [drain\_asg\_names](#input\_drain\_asg\_names) | Name of Auto Scaling Group that the lambda function reacts. If you don't specify this, the lambda function will react to all of Auto Scaling Group in the account. You can use the comparison operators available in EventBridge. | `list(any)` | `[]` | no |
-| <a name="lifecycle_hook_names"></a> [lifecycle\_hook\_names](#input\_lifecycle\hook\_names) | List of lifecycle hooks for which to trigger Lambda. If you don't specify this, the lambda function will react to all instance termination lifecycle events. | `list(string)` | `[]` | no |
+| <a name="input_lifecycle_hook_names"></a> [lifecycle\_hook\_names](#input\_lifecycle\hook\_names) | List of lifecycle hooks for which to trigger Lambda. If you don't specify this, the lambda function will react to all instance termination lifecycle events. | `list(string)` | `[]` | no |
 | <a name="input_event_main_version"></a> [event\_main\_version](#input\_event\_main\_version) | The version of the Lambda function that receivets the events | `string` | `"$LATEST"` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | A prefix used for the resources created by this module | `string` | n/a | yes |
 | <a name="input_source_version"></a> [source\_version](#input\_source\_version) | A version of the upstream release | `string` | `"1.0.7"` | no |
